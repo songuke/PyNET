@@ -1,6 +1,5 @@
 # Copyright 2020 by Andrey Ignatov. All Rights Reserved.
 
-from scipy import misc
 import numpy as np
 import tensorflow as tf
 import imageio
@@ -72,5 +71,5 @@ with tf.Session(config=config) as sess:
 
             # Save the results as .png images
             photo_name = photo.rsplit(".", 1)[0]
-            misc.imsave("results/full-resolution/" + photo_name + "_level_" + str(LEVEL) +
+            imageio.imsave("results/full-resolution/" + photo_name + "_level_" + str(LEVEL) +
                         "_iteration_" + str(restore_iter) + ".png", enhanced_image)

@@ -5,6 +5,7 @@ import tensorflow as tf
 import numpy as np
 import sys
 import os
+from PIL import Image 
 
 NUM_DEFAULT_TRAIN_ITERS = [100000, 35000, 20000, 20000, 5000, 5000]
 
@@ -139,4 +140,9 @@ def log10(x):
 def _tensor_size(tensor):
     from operator import mul
     return reduce(mul, (d.value for d in tensor.get_shape()[1:]), 1)
+
+def imresize(image, scale, interp='bicubic'): 
+    height = int(image.shape[0] * scale)
+    width = int(image.shape[1] * scale)
+    return np.array(Image.fromarray(image).resize((width, height), resample=Image.BICUBIC))
 

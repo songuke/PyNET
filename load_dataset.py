@@ -1,12 +1,11 @@
 # Copyright 2020 by Andrey Ignatov. All Rights Reserved.
 
 from __future__ import print_function
-from scipy import misc
 from PIL import Image
 import imageio
 import os
 import numpy as np
-
+import utils
 
 def extract_bayer_channels(raw):
 
@@ -42,7 +41,7 @@ def load_test_data(dataset_dir, PATCH_WIDTH, PATCH_HEIGHT, DSLR_SCALE):
         test_data[i, :] = I
         
         I = np.asarray(Image.open(test_directory_dslr + str(i) + '.jpg'))
-        I = misc.imresize(I, DSLR_SCALE / 2, interp='bicubic')
+        I = utils.imresize(I, DSLR_SCALE / 2, interp='bicubic')
         I = np.float16(np.reshape(I, [1, int(PATCH_WIDTH * DSLR_SCALE), int(PATCH_HEIGHT * DSLR_SCALE), 3])) / 255
         test_answ[i, :] = I
 
@@ -71,7 +70,7 @@ def load_training_batch(dataset_dir, TRAIN_SIZE, PATCH_WIDTH, PATCH_HEIGHT, DSLR
         train_data[i, :] = I
 
         I = np.asarray(Image.open(train_directory_dslr + str(img) + '.jpg'))
-        I = misc.imresize(I, DSLR_SCALE / 2, interp='bicubic')
+        I = utils.imresize(I, DSLR_SCALE / 2, interp='bicubic')
         I = np.float16(np.reshape(I, [1, int(PATCH_WIDTH * DSLR_SCALE), int(PATCH_HEIGHT * DSLR_SCALE), 3])) / 255
         train_answ[i, :] = I
 

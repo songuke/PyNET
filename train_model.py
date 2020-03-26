@@ -1,7 +1,6 @@
 # Copyright 2020 by Andrey Ignatov. All Rights Reserved.
 
 import tensorflow as tf
-from scipy import misc
 import numpy as np
 import sys
 
@@ -206,7 +205,7 @@ with tf.Graph().as_default(), tf.Session() as sess:
                 if idx < 4:
                     before_after = np.hstack((crop,
                                     np.reshape(visual_target_crops[idx], [TARGET_HEIGHT, TARGET_WIDTH, TARGET_DEPTH])))
-                    misc.imsave("results/pynet_img_" + str(idx) + "_level_" + str(LEVEL) + "_iter_" + str(i) + ".jpg",
+                    imageio.imsave("results/pynet_img_" + str(idx) + "_level_" + str(LEVEL) + "_iter_" + str(i) + ".jpg",
                                     before_after)
                 idx += 1
 
